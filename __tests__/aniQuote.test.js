@@ -38,4 +38,11 @@ describe('demo routes for anime quotes', () => {
 
     expect(res.body).not.toEqual(quoteSnapshot);
   });
+
+  it('deletes a quote by id via DELETE', async () => {
+    const quote = await AniQuoteService.generateQuote();
+    const res = await request(app).delete(`/api/v1/aniQuotes/${quote.id}`);
+
+    expect(res.body).toEqual({ message: 'This quote does not exist.' });
+  });
 });
