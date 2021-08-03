@@ -43,6 +43,6 @@ describe('demo routes', () => {
     const quote = await QuoteService.generateQuote();
     const res = await request(app).delete(`/api/v1/quotes/${quote.id}`);
 
-    expect(res.body).toEqual({ message: 'This quote does not exist ' });
+    expect(res.body).toEqual({ message: 'This quote does not exist.' });
   });
 });
