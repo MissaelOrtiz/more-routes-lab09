@@ -30,4 +30,12 @@ describe('demo routes', () => {
 
     expect(res.body).toEqual([quote1, quote2]);
   });
+
+  it('updates a quote by id via PUT', async () => {
+    const quote = await QuoteService.generateQuote();
+    const quoteSnapshot = quote;
+    const res = await request(app).put(`/api/v1/quotes/${quote.id}`);
+
+    expect(res.body).not.toEqual(quoteSnapshot);
+  });
 });
