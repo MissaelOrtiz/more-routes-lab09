@@ -34,7 +34,7 @@ describe('demo routes', () => {
   it('updates a quote by id via PUT', async () => {
     const quote = await QuoteService.generateQuote();
     const quoteSnapshot = quote;
-    const res = await request(app).put(`/api/v1/quotes/${quote.id}`);
+    const res = await request(app).put(`/api/v1/quotes/${quote.id}`).send({ source: 'Missael' });
 
     expect(res.body).not.toEqual(quoteSnapshot);
   });
