@@ -22,4 +22,12 @@ describe('demo routes', () => {
 
     expect(res.body).toEqual(quote);
   });
+
+  it('reads all existing quotes via GET', async () => {
+    const quote1 = await QuoteService.generateQuote();
+    const quote2 = await QuoteService.generateQuote();
+    const res = await request(app).get('/api/v1/quotes/');
+
+    expect(res.body).toEqual([quote1, quote2]);
+  });
 });
