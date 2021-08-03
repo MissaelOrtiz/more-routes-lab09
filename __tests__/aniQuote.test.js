@@ -22,4 +22,12 @@ describe('demo routes for anime quotes', () => {
 
     expect(res.body).toEqual(quote);
   });
+
+  it('reads all existing quotes via GET', async () => {
+    const quote1 = await AniQuoteService.generateQuote();
+    const quote2 = await AniQuoteService.generateQuote();
+    const res = await request(app).get('/api/v1/aniQuotes/');
+
+    expect(res.body).toEqual([quote1, quote2]);
+  });
 });
