@@ -38,4 +38,11 @@ describe('demo routes', () => {
 
     expect(res.body).not.toEqual(quoteSnapshot);
   });
+
+  it('deletes a quote by id via DELETE', async () => {
+    const quote = await QuoteService.generateQuote();
+    const res = await request(app).delete(`/api/v1/quotes/${quote.id}`);
+
+    expect(res.body).toEqual({ message: 'This quote does not exist ' });
+  });
 });
