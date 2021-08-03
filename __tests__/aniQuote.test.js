@@ -30,4 +30,12 @@ describe('demo routes for anime quotes', () => {
 
     expect(res.body).toEqual([quote1, quote2]);
   });
+
+  it('updates a quote by id via PUT', async () => {
+    const quote = await AniQuoteService.generateQuote();
+    const quoteSnapshot = quote;
+    const res = await request(app).put(`/api/v1/aniQuotes/${quote.id}`).send({ source: 'Missael no Nichijou' });
+
+    expect(res.body).not.toEqual(quoteSnapshot);
+  });
 });
